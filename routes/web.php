@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+Route::get('/', [PageController::class, 'index'])->name('index');
+
+Route::get('/about.html', function () {
+    return view('layouts.about');
+});
+
+
+Route::get('/categories.html', [PageController::class, 'categories']);
+
+Route::get('/posts/{slug}', [PageController::class, 'post'])->name('post');
+
+Route::get('/{category}', [PageController::class, 'categoryPosts'])->name('categoryPosts');
+
+
+Route::get('/post.html', function () {
+    return view('layouts.post');
 });
