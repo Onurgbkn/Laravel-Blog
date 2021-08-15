@@ -16,18 +16,11 @@ use App\Http\Controllers\PageController;
 
 Route::get('/', [PageController::class, 'index'])->name('index');
 
-Route::get('/about.html', function () {
-    return view('layouts.about');
-});
-
+Route::get('/about.html', [PageController::class, 'about'])->name('about');
 
 Route::get('/categories.html', [PageController::class, 'categories']);
+
 
 Route::get('/posts/{slug}', [PageController::class, 'post'])->name('post');
 
 Route::get('/{category}', [PageController::class, 'categoryPosts'])->name('categoryPosts');
-
-
-Route::get('/post.html', function () {
-    return view('layouts.post');
-});

@@ -1,13 +1,12 @@
 <div class="col-md-3">
+
   <ul class="list-group">
     <div class="">
       Top 3 Kategori
     </div>
-    <li class="list-group-item">First item <span class="badge bg-primary float-end">5</span></li>
-    <li class="list-group-item">Second item <span class="badge bg-primary float-end">5</span></li>
-    <li class="list-group-item">Third item <span class="badge bg-primary float-end">5</span></li>
-    <div class="">
-      Son 5
-    </div>
+    @foreach ($categories as $category)
+      <li class="list-group-item"><a href="{{route('categoryPosts', $category->slug)}}">{{$category->name}}</a><span class="badge bg-primary float-end">{{$category->GetCount()}}</span></li>
+    @endforeach
+
   </ul>
 </div>
