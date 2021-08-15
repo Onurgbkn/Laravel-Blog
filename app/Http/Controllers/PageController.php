@@ -12,13 +12,14 @@ class PageController extends Controller
     //
     public function index(){
 
-      $data['posts']=Post::orderBy('created_at', 'DESC')->get();
+      $data['posts']=Post::orderBy('created_at', 'DESC')->paginate(2);
       return view('layouts.index', $data);
     }
 
     public function categories(){
 
       $data['categories']=Category::inRandomOrder()->get();
+
       return view('layouts.categories', $data);
     }
 
@@ -27,7 +28,7 @@ class PageController extends Controller
     {
       $category = Category::where('slug', $slug)->first();
       $data['category'] = $category;
-      $data['posts'] = Post::where('categoryId', $category->id)->orderBy('created_at', 'DESC')->get();
+      $data['posts'] = Post::where('categoryId', $category->id)->orderBy('created_at', 'DESC')->paginate(2);
       return view('layouts.category', $data);
     }
 
