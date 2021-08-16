@@ -18,7 +18,7 @@ Route::get('/', [PageController::class, 'index'])->name('index');
 
 Route::get('/about.html', [PageController::class, 'about'])->name('about');
 
-Route::get('/categories.html', [PageController::class, 'categories']);
+Route::get('/categories.html', [PageController::class, 'categories'])->name('categories');;
 
 
 Route::get('/posts/{slug}', [PageController::class, 'post'])->name('post');
