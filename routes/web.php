@@ -20,7 +20,10 @@ Route::get('/about.html', [PageController::class, 'about'])->name('about');
 
 Route::get('/categories.html', [PageController::class, 'categories'])->name('categories');;
 
-
 Route::get('/posts/{slug}', [PageController::class, 'post'])->name('post');
 
 Route::get('/{category}', [PageController::class, 'categoryPosts'])->name('categoryPosts');
+
+Route::post('/posts/{slug}', [PageController::class, 'makecomment'])->name('makecomment');
+
+Route::post('/about', [PageController::class, 'contact'])->name('contact');

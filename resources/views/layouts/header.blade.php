@@ -27,8 +27,8 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav py-4 py-lg-0 col-sm-6">
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{route('index')}}">Anasayfa</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="categories.html">Kategoriler</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">Hakkimda</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{route('categories')}}">Kategoriler</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{route('about')}}">Hakkimda</a></li>
                     </ul>
                     <form class="d-flex col-lg-7" style="height: 40px">
                         <input class="form-control" type="search" placeholder="Search" aria-label="Search" size="100">
