@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Hakkımda')
+@section('title', 'Kategoriler')
 @section('content')
 
 

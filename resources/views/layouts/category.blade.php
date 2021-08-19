@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'My Blog')
+@section('title', $posts->first()->GetCategory->name)
 @section('content')
 
                 <div class="col-md-9 col-lg-9 col-xl-7 float-left">

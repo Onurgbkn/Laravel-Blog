@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'My Blog')
+@section('title', 'Anasayfa')
 @section('content')
 
 

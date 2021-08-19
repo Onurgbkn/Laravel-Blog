@@ -2,6 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\Dashboard;
+
+
+
+
+Route::get('/admin/panel', [Dashboard::class, 'index'])->name('admin.dashboard');
+
+
 
 /*
 |--------------------------------------------------------------------------

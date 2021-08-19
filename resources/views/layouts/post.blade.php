@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'My Blog')
+@section('title', Str::limit($post->title, 15))
 @section('content')
 
 <div class="col-md-9 col-lg-8 col-xl-7">
