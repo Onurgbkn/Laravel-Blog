@@ -9,6 +9,8 @@ use App\Http\Controllers\Dashboard;
 
 Route::get('/admin/panel', [Dashboard::class, 'index'])->name('admin.dashboard');
 
+Route::get('/admin/login', [Dashboard::class, 'login'])->name('login');
+
 
 
 /*
