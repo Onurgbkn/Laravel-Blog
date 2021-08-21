@@ -7,11 +7,21 @@ use App\Http\Controllers\Dashboard;
 
 
 
-Route::get('/admin/panel', [Dashboard::class, 'index'])->name('admin.dashboard');
-
-Route::get('/admin/login', [Dashboard::class, 'login'])->name('login');
 
 
+Route::post('/admin/register', [Dashboard::class, 'registerPost'])->name('registerPost');
+
+
+Route::post('/admin/login', [Dashboard::class, 'loginPost'])->name('loginPost');
+
+Route::get('/admin/logout', [Dashboard::class, 'logout'])->name('logout');
+
+
+Route::group(['middleware'=>['AdminCheck']], function(){
+    Route::get('/admin/panel', [Dashboard::class, 'index'])->name('dashboard');
+    Route::get('/admin/register', [Dashboard::class, 'register'])->name('register');
+    Route::get('/admin/login', [Dashboard::class, 'login'])->name('login');
+});
 
 /*
 |--------------------------------------------------------------------------

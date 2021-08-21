@@ -9,12 +9,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>Giris Yap</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('adminpanel')}}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
-        href="{{asset('adminpanel')}}/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
@@ -40,26 +40,32 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Admin Olduğunu Doğrula</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" method="post" action="{{route('loginPost')}}">
+                                      @csrf
+                                      @if (Session::get('fail'))
+                                          <div class="alert alert-danger">
+                                              {{Session::get('fail')}}
+                                          </div>
+                                      @endif
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Email">
+                                            <input type="text" class="form-control form-control-user"
+                                                id="exampleInputEmail"
+                                                placeholder="Kullanıcı Adı" name="username" value="{{old('username')}}">
+                                            <span class="text-danger">@error ('username'){{$message}}@enderror</span>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Şifre">
+                                                id="exampleInputPassword" placeholder="Şifre" name="password" value="{{old('password')}}">
+                                            <span class="text-danger">@error ('password'){{$message}}@enderror</span>
                                         </div>
-                                        <a href="{{asset('adminpanel')}}/index.html" class="btn btn-primary btn-user btn-block">
-                                            Giriş
-                                        </a>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block" name="button">Giriş Yap</button>
                                     </form>
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="{{asset('adminpanel')}}/forgot-password.html">Şifremi Unuttum!</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="{{asset('adminpanel')}}register.html">Hesap Oluştur!</a>
+                                        <a class="small" href="{{route('register')}}">Hesap Oluştur!</a>
                                     </div>
                                 </div>
                             </div>
