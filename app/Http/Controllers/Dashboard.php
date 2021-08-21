@@ -79,4 +79,35 @@ class Dashboard extends Controller
             return redirect(route('login'));
         }
     }
+
+
+    public function resetpassw()
+    {
+        $data['loggedUserInfo']=Admin::where('id', '=', session('loggedUser'))->first();
+        return view('admin.resetpassw', $data);
+    }
+
+    public function resetpasswPost(Request $request)
+    {
+
+        $request->validate([
+            'oldpassword' => 'required',
+            'password' => 'required|confirmed|min:4',
+        ]);
+
+        $adminfo = Admin::where('id', '=', session('loggedUser'))->first();
+
+        if (Hash::check($request->oldpassword, $adminfo->sifre)) {
+            $adminfo->sifre = Hash::make($request->password);
+            $save = $adminfo->save();
+
+            if ($save) {
+                return back()->with('success', 'Şifreniz başarıyla değiştirildi!');
+            }else {
+                return back()->with('fail', 'Hata!');
+            }
+        }else {
+            return back()->with('fail', 'Hatalı şifre girdiniz!');
+        }
+    }
 }

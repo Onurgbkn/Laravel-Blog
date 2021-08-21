@@ -18,10 +18,83 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{asset('adminpanel')}}/index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Admin Paneli</span></a>
+                <a class="nav-link py-3" href="{{route('dashboard')}}">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Anasayfa</span></a>
             </li>
+
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item">
+                <a class="nav-link py-3" href="{{route('dashboard')}}">
+                    <i class="fas fa-fw fa-signature"></i>
+                    <span>Yazılar</span></a>
+            </li>
+
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item">
+                <a class="nav-link py-3" href="{{route('dashboard')}}">
+                    <i class="fas fa-fw fa-align-justify"></i>
+                    <span>Kategoriler</span></a>
+            </li>
+
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item">
+                <a class="nav-link py-3" href="{{route('dashboard')}}">
+                    <i class="fas fa-fw fa-comments"></i>
+                    <span>Yorumlar</span></a>
+            </li>
+
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item">
+                <a class="nav-link py-3" href="{{route('dashboard')}}">
+                    <i class="fas fa-fw fa-search-dollar"></i>
+                    <span>Aramalar</span></a>
+            </li>
+
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item">
+                <a class="nav-link py-3" href="{{route('dashboard')}}">
+                    <i class="fas fa-fw fa-user-lock"></i>
+                    <span>Adminler</span></a>
+            </li>
+
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item">
+                <a class="nav-link py-3" href="{{route('dashboard')}}">
+                    <i class="fas fa-fw fa-user-circle"></i>
+                    <span>Hakkımda</span></a>
+            </li>
+
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item">
+                <a class="nav-link py-3" href="{{route('dashboard')}}">
+                    <i class="fas fa-fw fa-inbox"></i>
+                    <span>Mesajlar</span></a>
+            </li>
+
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item">
+                <a class="nav-link py-3" href="{{route('resetpassw')}}">
+                    <i class="fas fa-fw fa-key"></i>
+                    <span>Şifremi Değiştir</span></a>
+            </li>
+
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item">
+                <a class="nav-link py-3" href="{{route('logout')}}">
+                    <i class="fas fa-fw fa-sign-out-alt"></i>
+                    <span>Çıkış Yap</span></a>
+            </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -116,14 +189,6 @@
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
-            <!-- Sidebar Message -->
-            <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="{{asset('adminpanel')}}/img/undraw_rocket.svg" alt="...">
-                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-            </div>
-
         </ul>
         <!-- End of Sidebar -->
 
@@ -271,3 +336,6 @@
 
                 </nav>
                 <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
