@@ -44,8 +44,10 @@ Route::get('/categories.html', [PageController::class, 'categories'])->name('cat
 
 Route::get('/posts/{slug}', [PageController::class, 'post'])->name('post');
 
-Route::get('/{category}', [PageController::class, 'categoryPosts'])->name('categoryPosts');
+Route::get('/categories/{category}', [PageController::class, 'categoryPosts'])->name('categoryPosts');
 
 Route::post('/posts/{slug}', [PageController::class, 'makecomment'])->name('makecomment');
 
 Route::post('/about', [PageController::class, 'contact'])->name('contact');
+
+Route::get('/search', [PageController::class, 'searchPosts'])->name('searchPosts');

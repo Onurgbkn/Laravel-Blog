@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Comment;
 use App\Models\Contact;
+use App\Models\Search;
 
 class PageController extends Controller
 {
@@ -41,6 +42,25 @@ class PageController extends Controller
       $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
       $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
       return view('layouts.category', $data);
+    }
+
+    public function searchPosts(Request $request){
+        $search = $request->input('search');
+
+        $data['posts'] = Post::query()
+            ->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('content', 'LIKE', "%{$search}%")
+            ->paginate(2);
+
+        $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
+        $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
+        // Return the search view with the resluts compacted
+
+        $search = new Search;
+        $search->text=$request->input('search');
+        $search->save();
+
+        return view('layouts.search', $data);
     }
 
 
