@@ -128,4 +128,5 @@ class Dashboard extends Controller
             return back()->with('fail', 'Hatalı şifre girdiniz!');
         }
     }
+    
 }
