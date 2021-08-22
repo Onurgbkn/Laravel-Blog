@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('regular.master')
 @section('title', 'Kategoriler')
 @section('content')
 
@@ -22,5 +22,5 @@
 
 
 
-@include('widgets.sidebar')
+@include('regular.layouts.sidebar')
 @endsection

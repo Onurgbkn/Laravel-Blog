@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('regular.master')
 @section('title', Str::limit($post->title, 15))
 @section('content')
 
@@ -42,5 +42,5 @@
     </div>
   @endif
 </div>
-@include('widgets.sidebar')
+@include('regular.layouts.sidebar')
 @endsection

@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('regular.master')
 @section('title', 'Hakkımda')
 @section('content')
 
@@ -51,5 +51,5 @@
               </div>
           </div>
 
-@include('widgets.sidebar')
+@include('regular.layouts.sidebar')
 @endsection

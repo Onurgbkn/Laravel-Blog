@@ -22,7 +22,7 @@ class PageController extends Controller
         $data['posts']=Post::orderBy('created_at', 'DESC')->paginate(2);
         $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
         $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
-        return view('layouts.index', $data);
+        return view('regular.index', $data);
     }
 
 
@@ -32,7 +32,7 @@ class PageController extends Controller
 
         $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
         $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
-        return view('layouts.about', $data);
+        return view('regular.about', $data);
     }
 
 
@@ -42,7 +42,7 @@ class PageController extends Controller
 
         $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
         $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
-        return view('layouts.categories', $data);
+        return view('regular.categories', $data);
     }
 
 
@@ -56,7 +56,7 @@ class PageController extends Controller
         $data['posts'] = Post::where('categoryId', $category->id)->orderBy('created_at', 'DESC')->paginate(2);
         $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
         $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
-        return view('layouts.category', $data);
+        return view('regular.category', $data);
     }
 
     public function searchPosts(Request $request){
@@ -78,7 +78,7 @@ class PageController extends Controller
         $search->text=$request->input('search');
         $search->save();
 
-        return view('layouts.search', $data);
+        return view('regular.search', $data);
     }
 
 
@@ -90,7 +90,7 @@ class PageController extends Controller
         $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
         $data['post'] = Post::where('slug', $slug)->first();
         $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
-        return view('layouts.post', $data);
+        return view('regular.post', $data);
     }
 
 

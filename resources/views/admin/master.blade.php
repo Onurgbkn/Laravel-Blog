@@ -1,4 +1,4 @@
-@include('admin.header')
-@include('admin.sidebar')
+@include('admin.layouts.header')
+@include('admin.layouts.sidebar')
 @yield('content')
-@include('admin.footer')
+@include('admin.layouts.footer')

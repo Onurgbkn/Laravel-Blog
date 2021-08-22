@@ -1,5 +1,4 @@
-@extends('layouts.master')
-@section('title', $posts->first()->GetCategory->name)
+@extends('regular.master')
 @section('content')
 
                 <div class="col-md-9 col-lg-9 col-xl-7 float-left">
@@ -22,5 +21,5 @@
                     <!-- Pager-->
                     <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
                 </div>
-@include('widgets.sidebar')
+@include('regular.layouts.sidebar')
 @endsection

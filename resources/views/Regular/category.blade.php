@@ -1,7 +1,6 @@
-@extends('layouts.master')
-@section('title', 'Anasayfa')
+@extends('regular.master')
+@section('title', $posts->first()->GetCategory->name)
 @section('content')
-
 
                 <div class="col-md-9 col-lg-9 col-xl-7 float-left">
                     <!-- Post preview-->
@@ -16,13 +15,12 @@
                             on {{$post->created_at}}
                         </p>
                     </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
                   @endforeach
-
-
-
                   {{$posts->links("pagination::bootstrap-4")}}
                     <!-- Pager-->
                     <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
                 </div>
-@include('widgets.sidebar')
+@include('regular.layouts.sidebar')
 @endsection

@@ -29,7 +29,7 @@ class Dashboard extends Controller
         $data['posts']=Post::orderBy('created_at', 'DESC')->get();
 
 
-        return view('admin.posts', $data);
+        return view('admin.posts.posts', $data);
     }
 
     public function register()
@@ -63,7 +63,7 @@ class Dashboard extends Controller
 
     public function login()
     {
-        return view('admin.login');
+        return view('admin.auth.login');
     }
 
     public function loginPost(Request $request)
@@ -102,7 +102,7 @@ class Dashboard extends Controller
     public function resetpassw()
     {
         $data['loggedUserInfo']=Admin::where('id', '=', session('loggedUser'))->first();
-        return view('admin.resetpassw', $data);
+        return view('admin.auth.resetpassw', $data);
     }
 
     public function resetpasswPost(Request $request)
