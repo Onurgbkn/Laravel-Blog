@@ -40,10 +40,10 @@
                             <td>
                                 <ul class="list-inline m-0">
                                     <li class="list-inline-item">
-                                            <button id="edit-item" data-post-id="{{$post->id}}" class="btn btn-info btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-edit"></i></button>
+                                            <button id="edit-item" data-post-id="{{$post->id}}" class="btn btn-info btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
                                     </li>
                                     <li class="list-inline-item">
-                                        <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                                        <button id="delete-item" data-post-id="{{$post->id}}" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
                                     </li>
                                 </ul>
                             </td>
@@ -57,5 +57,6 @@
 
 @include('admin.posts.create')
 @include('admin.posts.edit')
+@include('admin.posts.delete')
 
 @endsection

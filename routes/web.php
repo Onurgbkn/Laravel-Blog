@@ -29,6 +29,8 @@ Route::group(['middleware'=>['AdminCheck']], function(){
     Route::get('/admin/posts', [PostController::class, 'index'])->name('adminposts');
     Route::post('/admin/create', [PostController::class, 'create'])->name('createposts');
     Route::post('/admin/update', [PostController::class, 'update'])->name('updateposts');
+    Route::post('/admin/delete', [PostController::class, 'delete'])->name('deleteposts');
+    Route::post('/admin/show', [PostController::class, 'show'])->name('showposts');
 });
 
 /*

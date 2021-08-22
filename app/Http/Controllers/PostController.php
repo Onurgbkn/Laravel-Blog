@@ -103,8 +103,18 @@ class PostController extends Controller
 
     }
 
-    public function destroy($id)
+    public function delete(Request $request)
     {
-        //
+        $post = Post::find((int)$request->input('postId'));
+        $category = Category::where('id', '=', $post->categoryId)->first();
+        $category->count=$category->count-1;
+        $category->save();
+        $delete = $post->delete();
+
+        if ($delete) {
+            return back()->with('success', 'Yazı silindi!');
+        }else {
+            return back()->with('fail', 'Hata');
+        }
     }
 }
