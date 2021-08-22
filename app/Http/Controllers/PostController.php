@@ -10,11 +10,7 @@ use App\Models\Category;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $data['loggedUserInfo']=Admin::where('id', '=', session('loggedUser'))->first();
@@ -27,29 +23,15 @@ class PostController extends Controller
         return view('admin.posts.posts', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
 
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function create(Request $request)
     {
 
         $request->validate([
             'title'=>'required|min:5',
             'category'=>'required',
-            'wysiwyg-editor' => 'required',
+            'editor1' => 'required',
         ]);
 
         $category = Category::where('name', '=', $request->category)->first();
@@ -60,7 +42,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->categoryId = $category->id;
         $post->adminId = session('loggedUser');
-        $post->content = $request->input('wysiwyg-editor');
+        $post->content = $request->input('editor1');
         $post->slug = Str::slug($request->title, '-');
         $save = $post->save();
 
@@ -74,45 +56,53 @@ class PostController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         return $id;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+
+
+        $request->validate([
+            'title'=>'required|min:5',
+            'editor2' => 'required',
+        ]);
+
+        $newcategory = Category::where('name', '=', $request->epostcategory)->first();
+
+        $newcategory->count=$newcategory->count+1;
+        $newcategory->save();
+
+        $post = Post::where('id', '=', (int)$request->input('postid'))->first();
+
+        $oldcategory = Category::where('id', '=', $post->categoryId)->first();
+
+        $oldcategory->count=$oldcategory->count-1;
+        $oldcategory->save();
+
+        $post->title = $request->title;
+        $post->categoryId = $newcategory->id;
+        $post->adminId = session('loggedUser');
+        $post->content = $request->input('editor2');
+        $post->slug = Str::slug($request->title, '-');
+        $save = $post->save();
+
+
+        if ($save) {
+            return back()->with('success', 'Yazı başarıyla güncellendi!');
+        }else {
+            return back()->with('fail', 'Hata');
+        }
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

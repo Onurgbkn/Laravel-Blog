@@ -26,7 +26,9 @@ Route::group(['middleware'=>['AdminCheck']], function(){
     Route::get('/admin/resetpassw', [Dashboard::class, 'resetpassw'])->name('resetpassw');
     Route::post('/admin/resetpassw', [Dashboard::class, 'resetpasswPost'])->name('resetpasswPost');
 
-    Route::resource('posts', PostController::class);
+    Route::get('/admin/posts', [PostController::class, 'index'])->name('adminposts');
+    Route::post('/admin/create', [PostController::class, 'create'])->name('createposts');
+    Route::post('/admin/update', [PostController::class, 'update'])->name('updateposts');
 });
 
 /*

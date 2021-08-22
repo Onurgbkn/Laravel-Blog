@@ -25,8 +25,8 @@
 
             <hr class="sidebar-divider my-0">
 
-            <li class="nav-item {{ request()->routeIs('posts.index*') ? 'active' : '' }}">
-                <a class="nav-link py-3" href="{{route('posts.index')}}">
+            <li class="nav-item {{ request()->routeIs('adminposts*') ? 'active' : '' }}">
+                <a class="nav-link py-3" href="{{route('adminposts')}}">
                     <i class="fas fa-fw fa-signature"></i>
                     <span>Yazılar</span></a>
             </li>

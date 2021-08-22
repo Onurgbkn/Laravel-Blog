@@ -1,20 +1,16 @@
-
-
-
-
-<div class="modal" id="ModalCreate">
+<div class="modal" id="ModalDelete">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
       <!-- Modal Header -->
         <div class="modal-header">
-            <h4 class="modal-title">Yazı Ekle</h4>
+            <h4 class="modal-title">Yazı Sil</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
       <!-- Modal body -->
       <div class="modal-body">
-              <form action="{{route('createposts')}}" method="post" enctype="multipart/form-data">
+              <form action="{{route('posts.destroy')}}" method="get">
                   @csrf
                   <div class="form-group">
                       <label for="exampleInput">Yazı Başlığı</label>
@@ -29,10 +25,7 @@
                       </select>
                     </div>
                     <div class="form-group">
-                        <textarea name="editor1"></textarea>
-                        <script>
-                                CKEDITOR.replace( 'editor1' );
-                        </script>
+                            <textarea class="ckeditor form-control" name="wysiwyg-editor"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                     <button type="button" class="btn btn-danger float-right" data-dismiss="modal">Close</button>
