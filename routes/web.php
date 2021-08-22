@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Dashboard;
+use App\Http\Controllers\PostController;
 
 
 
@@ -19,11 +20,13 @@ Route::get('/admin/logout', [Dashboard::class, 'logout'])->name('logout');
 
 Route::group(['middleware'=>['AdminCheck']], function(){
     Route::get('/admin/panel', [Dashboard::class, 'index'])->name('dashboard');
-    Route::get('/admin/posts', [Dashboard::class, 'posts'])->name('posts');
+    //Route::get('/admin/posts', [Dashboard::class, 'posts'])->name('posts');
     Route::get('/admin/register', [Dashboard::class, 'register'])->name('register');
     Route::get('/admin/login', [Dashboard::class, 'login'])->name('login');
     Route::get('/admin/resetpassw', [Dashboard::class, 'resetpassw'])->name('resetpassw');
     Route::post('/admin/resetpassw', [Dashboard::class, 'resetpasswPost'])->name('resetpasswPost');
+
+    Route::resource('posts', PostController::class);
 });
 
 /*
@@ -43,11 +46,11 @@ Route::get('/about.html', [PageController::class, 'about'])->name('about');
 
 Route::get('/categories.html', [PageController::class, 'categories'])->name('categories');;
 
-Route::get('/posts/{slug}', [PageController::class, 'post'])->name('post');
+Route::get('/post/{slug}', [PageController::class, 'post'])->name('post');
 
 Route::get('/categories/{category}', [PageController::class, 'categoryPosts'])->name('categoryPosts');
 
-Route::post('/posts/{slug}', [PageController::class, 'makecomment'])->name('makecomment');
+Route::post('/post/{slug}', [PageController::class, 'makecomment'])->name('makecomment');
 
 Route::post('/about', [PageController::class, 'contact'])->name('contact');
 
