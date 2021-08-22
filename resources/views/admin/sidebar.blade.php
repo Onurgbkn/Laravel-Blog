@@ -6,7 +6,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dashboard')}}">
@@ -17,7 +17,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item {{ request()->routeIs('dashboard*') ? 'active' : '' }}">
                 <a class="nav-link py-3" href="{{route('dashboard')}}">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Anasayfa</span></a>
@@ -25,8 +25,8 @@
 
             <hr class="sidebar-divider my-0">
 
-            <li class="nav-item">
-                <a class="nav-link py-3" href="{{route('dashboard')}}">
+            <li class="nav-item {{ request()->routeIs('posts*') ? 'active' : '' }}">
+                <a class="nav-link py-3" href="{{route('posts')}}">
                     <i class="fas fa-fw fa-signature"></i>
                     <span>Yazılar</span></a>
             </li>
@@ -339,3 +339,8 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">@yield('heading', 'Admin Paneli')</h1>
+                </div>

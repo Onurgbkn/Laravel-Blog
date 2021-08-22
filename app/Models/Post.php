@@ -13,4 +13,9 @@ class Post extends Model
     {
       return $this->hasOne('App\Models\Category', 'id', 'categoryId');
     }
+
+    function GetAdmin()
+    {
+      return $this->hasOne('App\Models\Admin', 'id', 'adminId');
+    }
 }

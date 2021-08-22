@@ -19,6 +19,7 @@ Route::get('/admin/logout', [Dashboard::class, 'logout'])->name('logout');
 
 Route::group(['middleware'=>['AdminCheck']], function(){
     Route::get('/admin/panel', [Dashboard::class, 'index'])->name('dashboard');
+    Route::get('/admin/posts', [Dashboard::class, 'posts'])->name('posts');
     Route::get('/admin/register', [Dashboard::class, 'register'])->name('register');
     Route::get('/admin/login', [Dashboard::class, 'login'])->name('login');
     Route::get('/admin/resetpassw', [Dashboard::class, 'resetpassw'])->name('resetpassw');

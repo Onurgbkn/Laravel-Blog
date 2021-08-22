@@ -3,8 +3,6 @@
 @section('content')
 
 
-
-
                 <div class="col-md-9 col-lg-9 col-xl-7 float-left">
                     <!-- Post preview-->
                     @foreach ($posts as $post)
@@ -19,6 +17,8 @@
                         </p>
                     </div>
                   @endforeach
+
+
 
                   {{$posts->links("pagination::bootstrap-4")}}
                     <!-- Pager-->

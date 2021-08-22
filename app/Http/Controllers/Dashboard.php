@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use App\Models\Post;
+use App\Models\Comment;
+use App\Models\Search;
 use Illuminate\Support\Facades\Hash;
 
 class Dashboard extends Controller
@@ -11,7 +14,22 @@ class Dashboard extends Controller
     public function index()
     {
         $data['loggedUserInfo']=Admin::where('id', '=', session('loggedUser'))->first();
+
+        $data['posts']=Post::orderBy('created_at', 'DESC')->limit(3)->get();
+        $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(3)->get();
+        $data['searches']=Search::orderBy('created_at', 'DESC')->limit(3)->get();
+
         return view('admin.dashboard', $data);
+    }
+
+    public function posts()
+    {
+        $data['loggedUserInfo']=Admin::where('id', '=', session('loggedUser'))->first();
+
+        $data['posts']=Post::orderBy('created_at', 'DESC')->get();
+
+
+        return view('admin.posts', $data);
     }
 
     public function register()

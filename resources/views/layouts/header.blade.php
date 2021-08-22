@@ -31,7 +31,7 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{route('about')}}">Hakkimda</a></li>
                     </ul>
                     <form class="d-flex col-lg-7" style="height: 40px" action="{{ url('/search') }}" method="GET">
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search" size="100" name="search" required>
+                        <input class="form-control" type="search" placeholder="{{$weather}} °" aria-label="Search" size="100" name="search" required>
                         <button class="btn btn-outline-dark" style="line-height: 5px" type="submit">Ara</button>
                     </form>
                 </div>

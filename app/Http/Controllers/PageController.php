@@ -12,36 +12,51 @@ use App\Models\Search;
 
 class PageController extends Controller
 {
+
+
     public function index(){
-      $data['posts']=Post::orderBy('created_at', 'DESC')->paginate(2);
-      $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
-      $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
-      return view('layouts.index', $data);
+        $weather = file_get_contents('http://api.openweathermap.org/data/2.5/weather?q=Erzurum&appid=8ebb6e4c8fccdeff707149c9fc18b696&units=metric');
+
+        $data['weather'] = round(json_decode($weather, true)['main']['temp']);
+
+        $data['posts']=Post::orderBy('created_at', 'DESC')->paginate(2);
+        $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
+        $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
+        return view('layouts.index', $data);
     }
 
 
     public function about(){
-      $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
-      $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
-      return view('layouts.about', $data);
+        $weather = file_get_contents('http://api.openweathermap.org/data/2.5/weather?q=Erzurum&appid=8ebb6e4c8fccdeff707149c9fc18b696&units=metric');
+        $data['weather'] = round(json_decode($weather, true)['main']['temp']);
+
+        $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
+        $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
+        return view('layouts.about', $data);
     }
 
 
     public function categories(){
-      $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
-      $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
-      return view('layouts.categories', $data);
+        $weather = file_get_contents('http://api.openweathermap.org/data/2.5/weather?q=Erzurum&appid=8ebb6e4c8fccdeff707149c9fc18b696&units=metric');
+        $data['weather'] = round(json_decode($weather, true)['main']['temp']);
+
+        $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
+        $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
+        return view('layouts.categories', $data);
     }
 
 
     public function categoryPosts($slug)
     {
-      $category = Category::where('slug', $slug)->first();
-      $data['category'] = $category;
-      $data['posts'] = Post::where('categoryId', $category->id)->orderBy('created_at', 'DESC')->paginate(2);
-      $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
-      $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
-      return view('layouts.category', $data);
+        $weather = file_get_contents('http://api.openweathermap.org/data/2.5/weather?q=Erzurum&appid=8ebb6e4c8fccdeff707149c9fc18b696&units=metric');
+        $data['weather'] = round(json_decode($weather, true)['main']['temp']);
+
+        $category = Category::where('slug', $slug)->first();
+        $data['category'] = $category;
+        $data['posts'] = Post::where('categoryId', $category->id)->orderBy('created_at', 'DESC')->paginate(2);
+        $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
+        $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
+        return view('layouts.category', $data);
     }
 
     public function searchPosts(Request $request){
@@ -51,6 +66,9 @@ class PageController extends Controller
             ->where('title', 'LIKE', "%{$search}%")
             ->orWhere('content', 'LIKE', "%{$search}%")
             ->paginate(2);
+
+        $weather = file_get_contents('http://api.openweathermap.org/data/2.5/weather?q=Erzurum&appid=8ebb6e4c8fccdeff707149c9fc18b696&units=metric');
+        $data['weather'] = round(json_decode($weather, true)['main']['temp']);
 
         $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
         $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
@@ -66,10 +84,13 @@ class PageController extends Controller
 
     public function post($slug)
     {
-      $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
-      $data['post'] = Post::where('slug', $slug)->first();
-      $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
-      return view('layouts.post', $data);
+        $weather = file_get_contents('http://api.openweathermap.org/data/2.5/weather?q=Erzurum&appid=8ebb6e4c8fccdeff707149c9fc18b696&units=metric');
+        $data['weather'] = round(json_decode($weather, true)['main']['temp']);
+
+        $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
+        $data['post'] = Post::where('slug', $slug)->first();
+        $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
+        return view('layouts.post', $data);
     }
 
 
@@ -94,20 +115,19 @@ class PageController extends Controller
 
     public function contact(Request $request)
     {
-
-      $validated = $request->validate([
+        $validated = $request->validate([
         'isim' => 'required',
         'email' => 'required',
         'mesaj' => 'required',
-      ]);
+        ]);
 
-      $contact = new Contact;
-      $contact->name=$request->input('isim');
-      $contact->email=$request->input('email');
-      $contact->tel=$request->input('tel');
-      $contact->message=$request->input('mesaj');
-      $contact->state="yanitlanmadi";
-      $contact->save();
-      return redirect()->route('about')->with('back', 'İletişim formu başarıyla gönderildi.');
+        $contact = new Contact;
+        $contact->name=$request->input('isim');
+        $contact->email=$request->input('email');
+        $contact->tel=$request->input('tel');
+        $contact->message=$request->input('mesaj');
+        $contact->state="yanitlanmadi";
+        $contact->save();
+        return redirect()->route('about')->with('back', 'İletişim formu başarıyla gönderildi.');
     }
 }
