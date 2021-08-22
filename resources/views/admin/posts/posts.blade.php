@@ -32,10 +32,10 @@
                 <tbody>
                     @foreach ($posts as $post)
                         <tr class="data-row">
-                            <td class="posttitle">{{ $post->title }}</td>
+                            <td class="posttitle"><a href="#" class="show-item">{{ $post->title }}</a></td>
                             <td class="postcategory">{{ $post->GetCategory->name }}</td>
                             <td>{{ $post->GetAdmin->username }}</td>
-                            <td>{{ $post->created_at }}</td>
+                            <td class="postdate">{{ $post->created_at }}</td>
                             <input type="hidden" class="postcontent" name="postcontent" value="{{ $post->content }}">
                             <td>
                                 <ul class="list-inline m-0">
@@ -58,5 +58,6 @@
 @include('admin.posts.create')
 @include('admin.posts.edit')
 @include('admin.posts.delete')
+@include('admin.posts.show')
 
 @endsection

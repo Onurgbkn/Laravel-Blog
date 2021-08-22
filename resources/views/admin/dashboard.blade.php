@@ -28,7 +28,7 @@
                                             <p class="card-text">{!! Str::limit($post->content, 400) !!}</p>
                                         </div>
                                         <div class="card-footer">
-                                            <small class="text-muted">{{$post->created_at}}</small>
+                                            <small class="text-muted">{{$post->created_at}}<span class="float-right">{{ $post->GetCategory->name}}</small>
                                         </div>
                                     </div>
                                 @endforeach
