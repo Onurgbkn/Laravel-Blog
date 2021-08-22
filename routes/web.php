@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\PostController;
-
+use App\Http\Controllers\CategoryController;
 
 
 
@@ -27,10 +27,15 @@ Route::group(['middleware'=>['AdminCheck']], function(){
     Route::post('/admin/resetpassw', [Dashboard::class, 'resetpasswPost'])->name('resetpasswPost');
 
     Route::get('/admin/posts', [PostController::class, 'index'])->name('adminposts');
-    Route::post('/admin/create', [PostController::class, 'create'])->name('createposts');
-    Route::post('/admin/update', [PostController::class, 'update'])->name('updateposts');
-    Route::post('/admin/delete', [PostController::class, 'delete'])->name('deleteposts');
-    Route::post('/admin/show', [PostController::class, 'show'])->name('showposts');
+    Route::post('/admin/posts/create', [PostController::class, 'create'])->name('createposts');
+    Route::post('/admin/posts/update', [PostController::class, 'update'])->name('updateposts');
+    Route::post('/admin/posts/delete', [PostController::class, 'delete'])->name('deleteposts');
+    Route::post('/admin/posts/show', [PostController::class, 'show'])->name('showposts');
+
+    Route::get('/admin/categories', [CategoryController::class, 'index'])->name('admincategories');
+    Route::post('/admin/categories/create', [CategoryController::class, 'create'])->name('createcategory');
+    Route::post('/admin/categories/update', [CategoryController::class, 'update'])->name('updatecategory');
+    Route::post('/admin/categories/delete', [CategoryController::class, 'delete'])->name('deletecategory');
 });
 
 /*

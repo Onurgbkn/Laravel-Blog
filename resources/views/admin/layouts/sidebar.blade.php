@@ -33,8 +33,8 @@
 
             <hr class="sidebar-divider my-0">
 
-            <li class="nav-item">
-                <a class="nav-link py-3" href="{{route('dashboard')}}">
+            <li class="nav-item {{ request()->routeIs('admincategories*') ? 'active' : '' }}">
+                <a class="nav-link py-3" href="{{route('admincategories')}}">
                     <i class="fas fa-fw fa-align-justify"></i>
                     <span>Kategoriler</span></a>
             </li>
