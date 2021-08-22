@@ -25,7 +25,7 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <h5 class="card-title"><b>{{$post->title}}</b></h5>
-                                            <p class="card-text">{{Str::limit($post->content, 400)}}</p>
+                                            <p class="card-text">{!! Str::limit($post->content, 400) !!}</p>
                                         </div>
                                         <div class="card-footer">
                                             <small class="text-muted">{{$post->created_at}}</small>
