@@ -6,7 +6,9 @@
 
   <h1>{{$post->title}}</h1>
 
-  <p>{{$post->content}}</p>
+  <p>{!! $post->content !!}</p>
+
+
 
   @if ($errors->any())
     <div class="alert alert-danger">
