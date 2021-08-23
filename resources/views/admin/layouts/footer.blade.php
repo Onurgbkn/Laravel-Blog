@@ -47,6 +47,7 @@ aria-hidden="true">
 </div>
 </div>
 
+
 <!-- Bootstrap core JavaScript-->
 <script src="{{asset('adminpanel')}}/vendor/jquery/jquery.min.js"></script>
 <script src="{{asset('adminpanel')}}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -57,18 +58,15 @@ aria-hidden="true">
 <!-- Custom scripts for all pages-->
 <script src="{{asset('adminpanel')}}/js/sb-admin-2.min.js"></script>
 
-<!-- Page level plugins -->
-<script src="{{asset('adminpanel')}}/vendor/chart.js/Chart.min.js"></script>
 
-<!-- Page level custom scripts -->
-<script src="{{asset('adminpanel')}}/js/demo/chart-area-demo.js"></script>
-<script src="{{asset('adminpanel')}}/js/demo/chart-pie-demo.js"></script>
 
 <script src="{{asset('adminpanel')}}/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="{{asset('adminpanel')}}/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 <!-- Page level custom scripts -->
 <script src="{{asset('adminpanel')}}/js/demo/datatables-demo.js"></script>
+
+@yield('js')
 
 </body>
 

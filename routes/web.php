@@ -5,6 +5,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 
 
 
@@ -36,6 +37,9 @@ Route::group(['middleware'=>['AdminCheck']], function(){
     Route::post('/admin/categories/create', [CategoryController::class, 'create'])->name('createcategory');
     Route::post('/admin/categories/update', [CategoryController::class, 'update'])->name('updatecategory');
     Route::post('/admin/categories/delete', [CategoryController::class, 'delete'])->name('deletecategory');
+
+    Route::get('/admin/comments', [CommentController::class, 'index'])->name('admincomments');
+    Route::get('/admin/comments/toggle', [CommentController::class, 'toggle'])->name('toggle');
 });
 
 /*

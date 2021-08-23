@@ -21,7 +21,7 @@ class PageController extends Controller
 
         $data['posts']=Post::orderBy('created_at', 'DESC')->paginate(2);
         $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
-        $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
+        $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'Aktif')->get();
         return view('regular.index', $data);
     }
 
@@ -31,7 +31,7 @@ class PageController extends Controller
         $data['weather'] = round(json_decode($weather, true)['main']['temp']);
 
         $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
-        $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
+        $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'Aktif')->get();
         return view('regular.about', $data);
     }
 
@@ -41,7 +41,7 @@ class PageController extends Controller
         $data['weather'] = round(json_decode($weather, true)['main']['temp']);
 
         $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
-        $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
+        $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'Aktif')->get();
         return view('regular.categories', $data);
     }
 
@@ -55,7 +55,7 @@ class PageController extends Controller
         $data['category'] = $category;
         $data['posts'] = Post::where('categoryId', $category->id)->orderBy('created_at', 'DESC')->paginate(2);
         $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
-        $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
+        $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'Aktif')->get();
         return view('regular.category', $data);
     }
 
@@ -71,7 +71,7 @@ class PageController extends Controller
         $data['weather'] = round(json_decode($weather, true)['main']['temp']);
 
         $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
-        $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
+        $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'Aktif')->get();
         // Return the search view with the resluts compacted
 
         $search = new Search;
@@ -89,7 +89,7 @@ class PageController extends Controller
 
         $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
         $data['post'] = Post::where('slug', $slug)->first();
-        $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'ok')->get();
+        $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'Aktif')->get();
         return view('regular.post', $data);
     }
 

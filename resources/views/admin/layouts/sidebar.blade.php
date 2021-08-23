@@ -41,8 +41,8 @@
 
             <hr class="sidebar-divider my-0">
 
-            <li class="nav-item">
-                <a class="nav-link py-3" href="{{route('dashboard')}}">
+            <li class="nav-item {{ request()->routeIs('admincomments*') ? 'active' : '' }}">
+                <a class="nav-link py-3" href="{{route('admincomments')}}">
                     <i class="fas fa-fw fa-comments"></i>
                     <span>Yorumlar</span></a>
             </li>

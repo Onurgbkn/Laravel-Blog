@@ -21,4 +21,5 @@
     <link href="{{asset('adminpanel')}}/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="{{asset('adminpanel')}}/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+    @yield('css')
 </head>
