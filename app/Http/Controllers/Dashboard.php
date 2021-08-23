@@ -34,7 +34,7 @@ class Dashboard extends Controller
 
     public function register()
     {
-        return view('admin.register');
+        return view('admin.auth.register');
     }
 
     public function registerPost(Request $request)
@@ -76,7 +76,7 @@ class Dashboard extends Controller
         $adminfo = Admin::where('username', '=', $request->username)->first();
         if ($adminfo) {
             if (Hash::check($request->password, $adminfo->sifre)) {
-                if ($adminfo->durum != "ok") {
+                if ($adminfo->durum == "Pasif") {
                     return back()->with('fail', 'Hesabınız henüz onaylanmadı!');
                 }else {
                     $request->session()->put('loggedUser', $adminfo->id);
@@ -128,5 +128,13 @@ class Dashboard extends Controller
             return back()->with('fail', 'Hatalı şifre girdiniz!');
         }
     }
-    
+
+    public function searches()
+    {
+
+        $data['loggedUserInfo']=Admin::where('id', '=', session('loggedUser'))->first();
+        $data['searches']=Search::get();
+        return view('admin.searches', $data);
+    }
+
 }

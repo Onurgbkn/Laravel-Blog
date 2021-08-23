@@ -49,16 +49,16 @@
 
             <hr class="sidebar-divider my-0">
 
-            <li class="nav-item">
-                <a class="nav-link py-3" href="{{route('dashboard')}}">
+            <li class="nav-item {{ request()->routeIs('adminsearches*') ? 'active' : '' }}">
+                <a class="nav-link py-3" href="{{route('adminsearches')}}">
                     <i class="fas fa-fw fa-search-dollar"></i>
                     <span>Aramalar</span></a>
             </li>
 
             <hr class="sidebar-divider my-0">
 
-            <li class="nav-item">
-                <a class="nav-link py-3" href="{{route('dashboard')}}">
+            <li class="nav-item {{ request()->routeIs('adminadmins*') ? 'active' : '' }}">
+                <a class="nav-link py-3" href="{{route('adminadmins')}}">
                     <i class="fas fa-fw fa-user-lock"></i>
                     <span>Adminler</span></a>
             </li>
@@ -339,8 +339,3 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">@yield('heading', 'Admin Paneli')</h1>
-                </div>

@@ -4,34 +4,33 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Admin;
-use App\Models\Comment;
 
-class CommentController extends Controller
+class AdminController extends Controller
 {
     public function index()
     {
         $data['loggedUserInfo']=Admin::where('id', '=', session('loggedUser'))->first();
-        $data['comments']=Comment::get();
-        return view('admin.comments.comments', $data);
+        $data['admins']=Admin::where('durum', '!=', 'root')->get();
+        return view('admin.admins.admins', $data);
     }
 
     public function toggle(Request $request){
-        $comment = Comment::find($request->id);
+        $admin = Admin::find($request->id);
         if ($request->state == "true") {
-            $comment->state = 'Aktif';
+            $admin->durum = 'Aktif';
         }else {
-            $comment->state = 'Pasif';
+            $admin->durum = 'Pasif';
         }
-        $comment->save();
+        $admin->save();
     }
 
     public function delete($id)
     {
-        $comment = Comment::find($id);
-        $delete = $comment->delete();
+        $admin = Admin::find($id);
+        $delete = $admin->delete();
 
         if ($delete) {
-            return back()->with('success', 'Yorum silindi!');
+            return back()->with('success', 'Admin Listeden Çıkarıldı!');
         }else {
             return back()->with('fail', 'Hata');
         }

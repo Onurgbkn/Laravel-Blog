@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\AdminController;
 
 
 
@@ -39,7 +40,14 @@ Route::group(['middleware'=>['AdminCheck']], function(){
     Route::post('/admin/categories/delete', [CategoryController::class, 'delete'])->name('deletecategory');
 
     Route::get('/admin/comments', [CommentController::class, 'index'])->name('admincomments');
-    Route::get('/admin/comments/toggle', [CommentController::class, 'toggle'])->name('toggle');
+    Route::get('/admin/comments/toggle', [CommentController::class, 'toggle'])->name('togglecomment');
+    Route::get('/admin/comments/delete{id}', [CommentController::class, 'delete'])->name('deletecomment');
+
+    Route::get('/admin/searches', [Dashboard::class, 'searches'])->name('adminsearches');
+
+    Route::get('/admin/admins', [AdminController::class, 'index'])->name('adminadmins');
+    Route::get('/admin/admins/toggle', [AdminController::class, 'toggle'])->name('toggleadmin');
+    Route::get('/admin/admins/delete{id}', [AdminController::class, 'delete'])->name('deleteadmin');
 });
 
 /*
