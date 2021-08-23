@@ -48,6 +48,8 @@ Route::group(['middleware'=>['AdminCheck']], function(){
     Route::get('/admin/admins', [AdminController::class, 'index'])->name('adminadmins');
     Route::get('/admin/admins/toggle', [AdminController::class, 'toggle'])->name('toggleadmin');
     Route::get('/admin/admins/delete{id}', [AdminController::class, 'delete'])->name('deleteadmin');
+
+    Route::get('/admin/about', [Dashboard::class, 'about'])->name('adminabout');
 });
 
 /*

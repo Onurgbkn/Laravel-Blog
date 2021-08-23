@@ -65,8 +65,8 @@
 
             <hr class="sidebar-divider my-0">
 
-            <li class="nav-item">
-                <a class="nav-link py-3" href="{{route('dashboard')}}">
+            <li class="nav-item {{ request()->routeIs('adminabout*') ? 'active' : '' }}">
+                <a class="nav-link py-3" href="{{route('adminabout')}}">
                     <i class="fas fa-fw fa-user-circle"></i>
                     <span>Hakkımda</span></a>
             </li>

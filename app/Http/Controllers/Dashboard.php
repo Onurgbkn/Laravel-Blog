@@ -137,4 +137,12 @@ class Dashboard extends Controller
         return view('admin.searches', $data);
     }
 
+
+    public function about()
+    {
+        $data['loggedUserInfo']=Admin::where('id', '=', session('loggedUser'))->first();
+
+        return view('admin.about', $data);
+    }
+
 }
