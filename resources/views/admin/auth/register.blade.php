@@ -88,9 +88,6 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="{{asset('adminpanel')}}\forgot-password.html">Şifremi Unuttum!</a>
-                                    </div>
-                                    <div class="text-center">
                                         <a class="small" href="{{route('login')}}\">Hesabın var mı? Giriş Yap!</a>
                                     </div>
                                 </div>

@@ -9,6 +9,7 @@ use App\Models\Post;
 use App\Models\Comment;
 use App\Models\Contact;
 use App\Models\Search;
+use App\Models\Owner;
 
 class PageController extends Controller
 {
@@ -19,7 +20,7 @@ class PageController extends Controller
 
         $data['weather'] = round(json_decode($weather, true)['main']['temp']);
 
-        $data['posts']=Post::orderBy('created_at', 'DESC')->paginate(2);
+        $data['posts']=Post::orderBy('created_at', 'DESC')->paginate(5);
         $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
         $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'Aktif')->get();
         return view('regular.index', $data);
@@ -29,6 +30,8 @@ class PageController extends Controller
     public function about(){
         $weather = file_get_contents('http://api.openweathermap.org/data/2.5/weather?q=Erzurum&appid=8ebb6e4c8fccdeff707149c9fc18b696&units=metric');
         $data['weather'] = round(json_decode($weather, true)['main']['temp']);
+
+        $data['owner'] = Owner::find(1);
 
         $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
         $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'Aktif')->get();
@@ -41,6 +44,7 @@ class PageController extends Controller
         $data['weather'] = round(json_decode($weather, true)['main']['temp']);
 
         $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
+        $data['allcategories']=Category::orderBy('created_at', 'DESC')->get();
         $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'Aktif')->get();
         return view('regular.categories', $data);
     }
@@ -53,7 +57,7 @@ class PageController extends Controller
 
         $category = Category::where('slug', $slug)->first();
         $data['category'] = $category;
-        $data['posts'] = Post::where('categoryId', $category->id)->orderBy('created_at', 'DESC')->paginate(2);
+        $data['posts'] = Post::where('categoryId', $category->id)->orderBy('created_at', 'DESC')->paginate(5);
         $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
         $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'Aktif')->get();
         return view('regular.category', $data);
@@ -65,7 +69,7 @@ class PageController extends Controller
         $data['posts'] = Post::query()
             ->where('title', 'LIKE', "%{$search}%")
             ->orWhere('content', 'LIKE', "%{$search}%")
-            ->paginate(2);
+            ->paginate(5);
 
         $weather = file_get_contents('http://api.openweathermap.org/data/2.5/weather?q=Erzurum&appid=8ebb6e4c8fccdeff707149c9fc18b696&units=metric');
         $data['weather'] = round(json_decode($weather, true)['main']['temp']);
@@ -88,8 +92,11 @@ class PageController extends Controller
         $data['weather'] = round(json_decode($weather, true)['main']['temp']);
 
         $data['categories']=Category::orderBy('count', 'DESC')->limit(3)->get();
-        $data['post'] = Post::where('slug', $slug)->first();
+        $post = Post::where('slug', $slug)->first();
+        $data['post'] = $post;
         $data['comments']=Comment::orderBy('created_at', 'DESC')->limit(5)->where('state', 'Aktif')->get();
+        $data['postcomments']=Comment::orderBy('created_at', 'DESC')->where('state', 'Aktif')->where('postId', $post->id)->paginate(5);
+
         return view('regular.post', $data);
     }
 
@@ -107,7 +114,7 @@ class PageController extends Controller
       $comment->name=$request->input('isim');
       $comment->email=$request->input('email');
       $comment->text=$request->input('yorum');
-      $comment->state="bekliyor";
+      $comment->state="Pasif";
       $comment->postId=$request->input('postId');
       $comment->save();
       return redirect()->route('post', [$slug])->with('back', 'Yorumunuz başarıyla gönderildi.');
@@ -126,7 +133,7 @@ class PageController extends Controller
         $contact->email=$request->input('email');
         $contact->tel=$request->input('tel');
         $contact->message=$request->input('mesaj');
-        $contact->state="yanitlanmadi";
+        $contact->state="Cevaplanmadı";
         $contact->save();
         return redirect()->route('about')->with('back', 'İletişim formu başarıyla gönderildi.');
     }

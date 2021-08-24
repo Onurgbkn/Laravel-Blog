@@ -11,7 +11,7 @@
                             <h3 class="post-subtitle">{!! Str::limit($post->content, 100) !!}</h3>
                         </a>
                         <p class="post-meta">
-                            <a href="#!">{{$post->GetCategory->name}}</a>
+                            <a href="/categories/{{$post->GetCategory->slug}}">{{$post->GetCategory->name}}</a>
                             on {{$post->created_at}}
                         </p>
                     </div>
@@ -20,7 +20,6 @@
                   @endforeach
                   {{$posts->links("pagination::bootstrap-4")}}
                     <!-- Pager-->
-                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
                 </div>
 @include('regular.layouts.sidebar')
 @endsection

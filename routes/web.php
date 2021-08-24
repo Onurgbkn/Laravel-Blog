@@ -7,6 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ContactController;
 
 
 
@@ -50,6 +51,10 @@ Route::group(['middleware'=>['AdminCheck']], function(){
     Route::get('/admin/admins/delete{id}', [AdminController::class, 'delete'])->name('deleteadmin');
 
     Route::get('/admin/about', [Dashboard::class, 'about'])->name('adminabout');
+    Route::post('/admin/updateabout', [Dashboard::class, 'update'])->name('updateabout');
+
+    Route::get('/admin/messages', [ContactController::class, 'index'])->name('admincontacts');
+    Route::post('/admin/messages', [ContactController::class, 'answer'])->name('answercontact');
 });
 
 /*

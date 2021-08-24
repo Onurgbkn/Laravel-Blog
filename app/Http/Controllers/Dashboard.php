@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Post;
+use App\Models\Owner;
 use App\Models\Comment;
 use App\Models\Search;
 use Illuminate\Support\Facades\Hash;
@@ -142,7 +143,27 @@ class Dashboard extends Controller
     {
         $data['loggedUserInfo']=Admin::where('id', '=', session('loggedUser'))->first();
 
+        $data['owner'] = Owner::find(1);
+
+
         return view('admin.about', $data);
+    }
+
+    public function update(Request $request)
+    {
+        $owner = Owner::find(1);
+        $owner->about = $request->input('editor1');
+        $owner->email = $request->input('email');
+        $owner->phone = $request->input('phone');
+        $owner->adress = $request->input('adres');
+        $save = $owner->save();
+
+        if ($save) {
+            return back()->with('success', 'Hakkımızda bilgisi başarıyla güncellendi!');
+        }else {
+            return back()->with('fail', 'Hata');
+        }
+
     }
 
 }

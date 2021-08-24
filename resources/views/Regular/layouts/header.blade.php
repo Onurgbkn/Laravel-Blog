@@ -20,10 +20,6 @@
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand col-lg-2" href="{{route('index')}}">MyBlog</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars"></i>
-                </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav py-4 py-lg-0 col-sm-6">
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{route('index')}}">Anasayfa</a></li>
@@ -32,20 +28,18 @@
                     </ul>
                     <form class="d-flex col-lg-7" style="height: 40px" action="{{ url('/search') }}" method="GET">
                         <input class="form-control" type="search" placeholder="{{$weather}} °" aria-label="Search" size="100" name="search" required>
-                        <button class="btn btn-outline-dark" style="line-height: 5px" type="submit">Ara</button>
+                        <button class="btn btn-info" style="line-height: 5px" type="submit">Ara</button>
                     </form>
                 </div>
 
             </div>
         </nav>
         <!-- Page Header-->
-        <header class="masthead" style="background-image: url('{{asset('cleanblog/')}}/assets/img/home-bg.jpg')">
+        <header class="masthead">
             <div class="container position-relative px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="site-heading">
-                            <h1>MyBlog</h1>
-                            <span class="subheading">A Blog Theme by Start Bootstrap</span>
                         </div>
                     </div>
                 </div>

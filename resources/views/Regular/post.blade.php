@@ -19,6 +19,23 @@
         </ul>
     </div>
   @endif
+  @if(session('back'))
+    <div class="alert alert-info" role="alert">
+      {{session('back')}}
+    </div>
+  @endif
+
+<h2>Yorumlar</h2>
+@foreach ($postcomments as $postcomment)
+    <div class="card bg-light mb-1">
+      <div class="card-body">
+        <h4 class="card-title">{{$postcomment->name}}</h4>
+        <p class="card-text">{{$postcomment->text}}</p>
+      </div>
+    </div>
+@endforeach
+{{$postcomments->links("pagination::bootstrap-4")}}
+
 
   <form method="post" action="{{route('makecomment', $post->slug)}}">
     @csrf
@@ -38,11 +55,7 @@
     <button type="submit"  class="btn btn-primary my-3">Gönder</button>
   </form>
 
-  @if(session('back'))
-    <div class="alert alert-info" role="alert">
-      {{session('back')}}
-    </div>
-  @endif
+
 </div>
 @include('regular.layouts.sidebar')
 @endsection

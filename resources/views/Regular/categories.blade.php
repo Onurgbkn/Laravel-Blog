@@ -9,10 +9,10 @@
 
   <ul class="list-group">
     <div class="">
-      Top 3 Kategori
+      Kategoriler
     </div>
-    @foreach ($categories as $category)
-      <li class="list-group-item"><a href="{{route('categoryPosts', $category->slug)}}">{{$category->name}}</a><span class="badge bg-primary float-end">{{$category->count}}</span></li>
+    @foreach ($allcategories as $allcategory)
+      <li class="list-group-item"><a href="{{route('categoryPosts', $allcategory->slug)}}">{{$allcategory->name}}</a><span class="badge bg-primary float-end">{{$allcategory->count}}</span></li>
     @endforeach
 
   </ul>
