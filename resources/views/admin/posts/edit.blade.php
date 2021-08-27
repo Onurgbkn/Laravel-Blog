@@ -33,8 +33,8 @@
                         </script>
                     </div>
                     <input type="hidden" id="postid" name="postid" value="">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <button type="button" class="btn btn-danger float-right" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Düzenle</button>
+                    <button type="button" class="btn btn-danger float-right" data-dismiss="modal">Kapat</button>
 
                 </form>
             </div>

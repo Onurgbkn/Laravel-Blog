@@ -68,8 +68,6 @@ class PostController extends Controller
 
     public function update(Request $request)
     {
-
-
         $request->validate([
             'title'=>'required|min:5',
             'editor2' => 'required',
@@ -94,13 +92,11 @@ class PostController extends Controller
         $post->slug = Str::slug($request->title, '-');
         $save = $post->save();
 
-
         if ($save) {
             return back()->with('success', 'Yazı başarıyla güncellendi!');
         }else {
             return back()->with('fail', 'Hata');
         }
-
     }
 
     public function delete(Request $request)
